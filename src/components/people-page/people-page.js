@@ -10,7 +10,6 @@ import Row from "../Row/row"
 import ErrorBoundary from "../error-boundary/error-boundary";
 
 export default class PeoplePage extends Component {
-
     swapiService = new SwapiService();
 
     state = {
@@ -24,7 +23,7 @@ export default class PeoplePage extends Component {
     render () {
 
         const itemList = (
-            <ItemList onItemSelected={this.onItemSelected} getData={this.swapiService.getAllPeople}>
+            <ItemList onItemSelected={this.onPersonSelected} getData={this.swapiService.getAllPeople}>
                 { i => `${i.name} (${i.birthYear})` }
             </ItemList>
         )
