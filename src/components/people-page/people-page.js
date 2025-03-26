@@ -1,40 +1,59 @@
 import React, { Component } from "react";
 
 import ItemList from "../item-list/item-list";
+import ItemDetails, { Record } from "../item-details/item-details";
 import ErrorIndicator from "../error-indicator/error-indicator";
-
-import './people-page.css'
 import SwapiService from "../../services/swapi-service";
-import Row from "../Row/row"
+import Row from "../Row";
 import ErrorBoundary from "../error-boundary/error-boundary";
+
+import "./people-page.css";
 
 export default class PeoplePage extends Component {
     swapiService = new SwapiService();
 
     state = {
-        selectedPerson: null
-    }
-
-    onPersonSelected = (selectedPerson) => {
-        this.setState({ selectedPerson })
+        selectedItem: null,
     };
 
-    render () {
+    onItemSelected = (selectedItem) => {
+        this.setState({ selectedItem });
+    };
+
+    render() {
+        const {
+            getPerson,
+            getAllPeople,
+            getStarship,
+            getPlanet,
+            getPersonImage,
+            getStarshipImage,
+            getPlanetImage,
+        } = this.swapiService;
 
         const itemList = (
-            <ItemList onItemSelected={this.onPersonSelected} getData={this.swapiService.getAllPeople}>
-                { i => `${i.name} (${i.birthYear})` }
+            <ItemList onItemSelected={this.onItemSelected} getData={getAllPeople}>
+                {(i) => `${i.name} (${i.birthYear})`}
             </ItemList>
-        )
+        );
 
         const personDetails = (
-            <PersonDetails personId={this.state.selectedPerson} />
-        )
+            <ItemDetails
+                itemId={this.state.selectedItem}
+                getData={getPerson}
+                getImageUrl={getPersonImage}
+            >
+                <Record field="gender" label="Gender" />
+                <Record field="eyeColor" label="Eye Color" />
+                <Record field="height" label="Height" />
+                <Record field="birthYear" label="Birth Year" />
+            </ItemDetails>
+        );
 
         return (
             <ErrorBoundary>
-                <Row left={ itemList } right={ personDetails } />
+                <Row left={itemList} right={personDetails} />
             </ErrorBoundary>
-        )
+        );
     }
 }
