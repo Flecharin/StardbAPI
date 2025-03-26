@@ -11,10 +11,10 @@ const PersonDetails = ({ itemId, swapiService }) => {
             getData={getPerson}
             getImageUrl={getPersonImage}
         >
-            <Record field="gender" label="Gender" />
-            <Record field="eyeColor" label="Eye Color" />
-            <Record field="height" label="Height" />
-            <Record field="birthYear" label="Birth Year" />
+            <Record field="gender" label="Gender"/>
+            <Record field="eyeColor" label="Eye Color"/>
+            <Record field="height" label="Height"/>
+            <Record field="birthYear" label="Birth Year"/>
         </ItemDetails>
     );
 };
