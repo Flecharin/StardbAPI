@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Spinner from '../spinner';
 import SwapiService from '../../services/swapi-service';
-import ErrorIndicator from '../error-indicator';
+import { ErrorIndicator } from "../errors";
 
 import './random-planet.css'
 
@@ -45,20 +45,21 @@ export default class RandomPlanet extends Component {
     onError = (err) => {
         this.setState({
             loading: false,
-            error: true
+            error: true,
         });
-    }
+    };
 
     updatePlanet = () => {
         let id = 20;
         while (id === 20) {
             id = Math.floor(Math.random()*19 + 2)
         }
+
         this.swapiService
             .getPlanet(id)
             .then(this.onPlanetLoaded)
-            .catch((err) => this.onError())
-    }
+            .catch((err) => this.onError());
+    };
 
     render() {
         const { planet, loading, error } = this.state
