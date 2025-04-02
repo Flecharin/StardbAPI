@@ -24,7 +24,6 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
-    Redirect,
 } from 'react-router-dom'
 import StarshipDetails from "../sw-components/starship-details";
 
@@ -69,7 +68,7 @@ export default class App extends Component {
 
                                 <Route path="/people/:id?" component={PeoplePage} exact />
 
-                                <Route path="/planets" component={PlanetsPage} exact />
+                                <Route path="/planets/:id?" component={PlanetsPage} exact />
 
                                 <Route path="/starships" component={StarshipsPage} exact />
                                 <Route

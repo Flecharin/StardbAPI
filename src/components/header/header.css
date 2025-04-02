@@ -1,13 +1,19 @@
 .header {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     padding-left: 10px;
+    margin-bottom: 1rem;
+}
+
+.header ul {
+    margin: auto 0;
 }
 
 .header ul li {
     list-style: none;
     margin: 0;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 3px;
+    font-size: 1.1rem;
 }
 
 .header ul li:hover {
@@ -19,6 +25,7 @@
 }
 
 .header h3 a {
+    font-size: 2.5rem;
     color: white;
 }
 
