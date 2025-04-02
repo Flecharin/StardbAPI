@@ -22,6 +22,7 @@ import {
     StarshipsPage,
     LoginPage,
     SecretPage,
+    WelcomePage,
 } from "../pages"
 
 
@@ -57,14 +58,16 @@ export default class App extends Component {
                             <Header />
                             <RandomPlanet />
                             <Routes>
-                                <Route path="/" element={<h4>Welcome to StarDB</h4>} />
+                                <Route path="/" component={WelcomePage} exact />
                                 <Route path="/people/:id?" element={<PeoplePage />} />
                                 <Route path="/planets/:id?" element={<PlanetsPage />} />
                                 <Route path="/starships" element={<StarshipsPage />} />
                                 <Route
                                     path="/starships/:id"
                                     element={
-                                        <StarshipDetails itemId={window.location.pathname.split("/").pop()} />
+                                        <StarshipDetails
+                                            itemId={window.location.pathname.split("/").pop()}
+                                        />
                                     }
                                 />
                                 <Route
@@ -73,7 +76,10 @@ export default class App extends Component {
                                         <LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin} />
                                     }
                                 />
-                                <Route path="/secret" element={<SecretPage isLoggedIn={isLoggedIn} />} />
+                                <Route
+                                    path="/secret"
+                                    element={<SecretPage isLoggedIn={isLoggedIn} />}
+                                />
                                 <Route path="*" element={<NotFoundIndicator />} />
                             </Routes>
                         </div>
