@@ -1,21 +1,15 @@
-import React, {Component} from 'react';
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-} from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Header from '../header/header'
-import RandomPlanet from '../random-planet/random-planet'
+import Header from "../header";
+import RandomPlanet from "../random-planet";
 
 import "./app.css";
-
 import { ErrorIndicator, NotFoundIndicator } from "../errors";
-import ErrorBoundry from "../error-boundary";
+import ErrorBoundary from "../error-boundary";
 
 import { SwapiServiceProvider } from "../swapi-service-context";
 import SwapiService from "../../services/swapi-service";
-
 import {
     PeoplePage,
     PlanetsPage,
@@ -23,16 +17,15 @@ import {
     LoginPage,
     SecretPage,
     WelcomePage,
-} from "../pages"
-
+} from "../pages";
 
 import StarshipDetails from "../sw-components/starship-details";
 
 export default class App extends Component {
-
     state = {
         hasError: false,
-        swapiService: new SwapiService()
+        swapiService: new SwapiService(),
+        isLoggedIn: false,
     };
 
     onLogin = () => {
@@ -40,25 +33,25 @@ export default class App extends Component {
     };
 
     componentDidCatch() {
-        this.setState({hasError: true})
+        this.setState({ hasError: true });
     }
 
     render() {
-        if(this.state.hasError) {
-            return <ErrorIndicator/>
+        if (this.state.hasError) {
+            return <ErrorIndicator />;
         }
 
         const { isLoggedIn, swapiService } = this.state;
 
         return (
-            <ErrorBoundry>
+            <ErrorBoundary>
                 <SwapiServiceProvider value={swapiService}>
                     <Router>
                         <div className="stardb-app">
                             <Header />
                             <RandomPlanet />
                             <Routes>
-                                <Route path="/" component={WelcomePage} exact />
+                                <Route path="/" element={<WelcomePage />} />
                                 <Route path="/people/:id?" element={<PeoplePage />} />
                                 <Route path="/planets/:id?" element={<PlanetsPage />} />
                                 <Route path="/starships" element={<StarshipsPage />} />
@@ -85,7 +78,7 @@ export default class App extends Component {
                         </div>
                     </Router>
                 </SwapiServiceProvider>
-            </ErrorBoundry>
-        )
+            </ErrorBoundary>
+        );
     }
 }

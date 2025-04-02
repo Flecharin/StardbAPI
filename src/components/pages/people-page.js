@@ -16,4 +16,4 @@ const PeoplePage = () => {
     );
 };
 
-export default PeoplePage
+export default PeoplePage;
