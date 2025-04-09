@@ -1,8 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom'
-
-import './header.css';
+import { Link } from "react-router-dom";
+import "./header.css";
 
 const Header = () => {
     return (
@@ -18,7 +17,7 @@ const Header = () => {
                     <Link to="/planets/">Planets</Link>
                 </li>
                 <li>
-                    <Link to="/starships/">Starships</Link>
+                    <Link to="/starships/">Starships</Link>{" "}
                 </li>
                 <li>
                     <Link to="/login">Login</Link>

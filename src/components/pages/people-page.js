@@ -1,8 +1,8 @@
-import React from "react"
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import {PersonDetails, PersonList} from "../sw-components"
-import Row from "../Row"
+import { PersonDetails, PersonList } from "../sw-components";
+import Row from "../Row";
 
 const PeoplePage = () => {
     const { id } = useParams();
